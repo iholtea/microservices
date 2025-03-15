@@ -1,0 +1,33 @@
+# postgress service:
+#   
+# PGDATA env variable overrides where Postgress keeps database files
+#     set it to /data instead of default /var/lib/postgresql/data
+#
+# the volumes part mounts the container folder for Postgres database files
+#   in this case /data from the container to the local relativa path ./data
+#   in order to keep the data when the container are destroyed and re-created
+#   
+#
+
+services:
+
+  postgres:
+    container_name: patient-service-db
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: patient
+      PGDATA: /data
+    volumes:
+      - ./data:/data
+    ports:
+      - "5000:5432" 
+    networks:
+      - clinic-network
+
+# if we use a network created separately it must be defined as external
+networks:
+  clinic-network:
+    external: true
+

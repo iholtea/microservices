@@ -37,7 +37,6 @@ public class Patient {
 	private LocalDate registeredDate;
 
 	
-	
 	public UUID getId() {
 		return id;
 	}

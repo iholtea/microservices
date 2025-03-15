@@ -1,0 +1,31 @@
+# patient app service:
+#   
+#   to override the application.properties values use environment variables.
+#   the names rule is : Use capital letters.
+#   . -> _  so spring.datasource -> SPRING_DATASOURCE
+#   - remains - ddl-auto -> DDL-AUTO  
+#
+
+services:
+
+  patient-service:
+    container_name: patient-service
+    image: patient-service:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://patient-service-db:5432/patient
+      SPRING_DATASOURCE_USERNAME: admin 
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
+      SPRING_JPA_DATABASE-PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      SPRING_SQL_INIT_MODE: always
+    ports:
+      - "4000:4000" 
+    networks:
+      - clinic-network
+
+# if we use a network created separately it must be defined as external
+networks:
+  clinic-network:
+    external: true
+

@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Database volume mapped folder
+docker/db/data/
