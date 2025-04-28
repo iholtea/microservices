@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/patients")
-@Tag(name = "Patinet", description = "API for managing Patients") 
+@Tag(name = "Patient", description = "API for managing Patients") 
 public class PatientResource {
 	
 	private PatientService patientService;
